@@ -4,19 +4,22 @@ import Carouselheader from './components/Carousel'
 import Footer from './components/Footer';
 import Sale from './components/Sale';
 import LoMasVendido from './components/LoMasVendido';
+import ListaProductos from './components/ListaProductos';
+import Newsletter from './components/Newsletter';
 
 
 
 function App() {
   return (
     <>
-        <NavigationBar/>
-        <Carouselheader/>
-        <Sale/>
-        <LoMasVendido/>
-       
+        <NavigationBar  
+         />
+        <Carouselheader />
+        <LoMasVendido />
+        <ListaProductos />
+        <Newsletter />
         
-        <Footer/>
+        <Footer />
     </>
   );
 }
