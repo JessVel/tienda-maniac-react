@@ -1,6 +1,6 @@
 {
-  "homepage": " https://JessVel.github.io/tiendaManiac-react/",
-  "name": "tiendaManiac-react",
+  "homepage":"https://JessVel.github.io/tienda-maniac-react",
+  "name": "tienda-maniac-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
