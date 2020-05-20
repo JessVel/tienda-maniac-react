@@ -1,30 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
 import TarjetaProducto from './TarjetaProducto';
 
 
 
-const ListaProductos = ()=>{
+const ListaProductos = (props)=>{
+
+  const [ productos, setProductos ] = useState([]) //crear una variable de estado que inicialmente este vacia
+        //productos es la variable del estado y es un array vacio // setproductos es una funcion que setea el valor de productos   
+
+        let endpoint = 'productos';
+
+        if ( props.user && props.type === 'micarrito' ){
+          endpoint = 'productos/user/' + props.user.id;
+      }
+ 
+      useEffect( ()=>{
+        fetch(`http://localhost:8888/${endpoint}`).then(
+            response => response.json()
+        ).then(
+            data => {
+                setProductos(data)
+            }
+        )
+   }, []
+)
+
+             
+              
    return(
 
-    <Row>
-      
-      <TarjetaProducto title="Blazzer Rock" 
-                       image="https://images.unsplash.com/photo-1535237232425-ef747e84d31d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                       precio= "$500"
+    <Row className="m-4">
 
-      />
-
-      <TarjetaProducto  title="Blazzer Rock"
-                        image="https://images.unsplash.com/photo-1560727749-cc261b23794c?ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
-                        precio="$400"
-      />
-
-      <TarjetaProducto  title="Blazzer Rock"
-                        image="https://images.unsplash.com/photo-1525722212921-6e4e548016db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                        precio="$200"
-      />
-
+      {
+        productos.map(producto => {
+                  return(
+                    
+                            <TarjetaProducto title={producto.nombre}
+                                             id={producto.id}
+                                             imagen={producto.imagen}
+                                             precio={producto.precio} 
+                                             type={props.type}                       
+/>
+)
+        })
+      }
+         
     </Row>
  );
   

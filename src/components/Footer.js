@@ -14,22 +14,23 @@ import arroba from '../images/arroba.png';
 import facebook from '../images/facebook-mini.png';
 import instagram from '../images/instagram-mini.png';
 import twitter from '../images/twitter-mini2.png';
+import {Link} from 'react-router-dom';
 
 
 
 const Footer = ()=>{
     return(
         <>
-        <Container fluid style={{backgroundColor: "#d3d3d3"}} expand="lg">
+        <Container fluid style={{backgroundColor: "#d3d3d3"}} expand="lg" >
             <Row>
             <Col style={{textTransform: "uppercase", fontFamily: "Verdana, Geneva, sans-serif"}} md={3}>
                 <h6><small>Navegación</small></h6>
                 <ul style={{listStyle:"none", paddingLeft:"0px", color:"black"}}>
-                    <li><a href="#"><small>Inicio</small></a></li>
-                    <li><a href="#"><small>Tienda</small></a></li>
-                    <li><a href="#"><small>Como Comprar</small></a></li>
-                    <li><a href="#"><small>Locales</small></a></li>
-                    <li><a href="#"><small>Contacto</small></a></li>
+                    <li><Link to="/"><small>Inicio</small></Link></li>
+                    <li><Link to="/"><small>Tienda</small></Link></li>
+                    <li><Link to="/" href="#"><small>Como Comprar</small></Link></li>
+                    <li><Link to="/"><small>Locales</small></Link></li>
+                    <li><Link to="/"><small>Contacto</small></Link></li>
                 </ul>
             </Col>
             <Col style={{textTransform: "uppercase", fontFamily: "Verdana, Geneva, sans-serif"}} md={4}>
