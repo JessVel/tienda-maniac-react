@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
 import TarjetaProducto from './TarjetaProducto';
+import NavBarMisPublicaciones from './NavBarMisPublicaciones'
 
 
 
@@ -11,9 +12,6 @@ const ListaProductos = (props)=>{
 
         let endpoint = 'productos';
 
-        if ( props.user && props.type === 'micarrito' ){
-          endpoint = 'productos/user/' + props.user.id;
-      }
  
       useEffect( ()=>{
         fetch(`http://localhost:8888/${endpoint}`).then(
@@ -30,6 +28,10 @@ const ListaProductos = (props)=>{
               
    return(
 
+<>
+
+    
+    
     <Row className="m-4">
 
       {
@@ -41,12 +43,13 @@ const ListaProductos = (props)=>{
                                              imagen={producto.imagen}
                                              precio={producto.precio} 
                                              type={props.type}                       
-/>
-)
-        })
+                            />
+                          )
+                                   })
       }
          
     </Row>
+  </>
  );
   
 }

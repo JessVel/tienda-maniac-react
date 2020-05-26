@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/button'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import {useParams} from 'react-router-dom';
 import {Link} from 'react-router-dom';
+import './detalleProducto.css';
 
 export default (props)=>{
 
@@ -33,14 +34,16 @@ export default (props)=>{
         producto &&
         
         <Container fluid>
-            <Breadcrumb style={{backgroundColor:"transparent"}}>
+            <Breadcrumb className="breadcrumb" style={{backgroundColor:"transparent"}}>
             <Link to="/" className="breadcrumb-item">Home</Link>
             <Link to="/tienda" className="breadcrumb-item">Tienda</Link>
             <Link to="/detalleproducto" className="breadcrumb-item">Detalle</Link>
             </Breadcrumb>
         <Row>
-          <Col md={8} className="d-flex justify-content-auto"> 
-          <img src={producto.imagen}  className="img-thumbnail float-left" style={{padding:"10px"}}/>
+          <Col  md={8} > 
+         <div className="coso">
+          <img src={producto.imagen}  className=" thumbnail img-thumbnail rounded mx-auto d-block" style={{padding:"10px"}}/>
+          </div>
           </Col>
 
           <Col md={4}>

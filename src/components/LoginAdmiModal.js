@@ -7,7 +7,7 @@ export default (props) =>{
 
     const handleLoginAdmiClick = ()=>{
             
-        let url = 'http://localhost:8888/auth';
+        let url = 'http://localhost:8888/administradores';
 
         let params = {
                         administrador: nombreAdmi,

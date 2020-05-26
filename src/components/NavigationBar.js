@@ -35,6 +35,8 @@ const [showLoginAdmiModal, setShowLoginAdmiModal] = useState(false);
 
 
     return(
+
+
 <>
     <Navbar className="sticky-top" style={{backgroundColor: "rgba(236, 181, 203, 0.911)", textTransform: "uppercase", position: "fix"}}  expand="lg">
 
@@ -51,29 +53,47 @@ const [showLoginAdmiModal, setShowLoginAdmiModal] = useState(false);
       <Link to="/locales" className="nav-link" >Locales</Link>
       <Link to="/contacto" className="nav-link" >Contacto</Link>
       </Nav>
-        <Nav className="ml-auto" >
-        { !props.user 
-        ?
-          
-          <>
-        <Button style={{borderRadius:0, marginTop:"2px", marginBottom:"2px"}} variant="outline-secondary" onClick={ handleShowLoginModal } >Iniciar sesión</Button>
-        <Button style={{borderRadius:0, marginTop:"2px", marginBottom:"2px"}} variant="secondary" onClick={  handleShowLoginAdmiModal }>Soy administrador</Button>
+      
+      <Nav className="ml-auto" >
+      { (!props.user && !props.administrador) &&
+      
+        <>
+        <Button style={{marginTop:"2px", marginBottom:"2px"}} variant="secondary" onClick={ handleShowLoginModal } >Iniciar sesión</Button>
+        <Button style={{marginTop:"2px", marginBottom:"2px"}} variant="secondary" onClick={  handleShowLoginAdmiModal }>Soy administrador</Button>
         </>
-
-        :
+      }
+      {(props.type === "user" || props.user) &&
+      
        <>
         <Link to="/micarrito" className="nav-link"><i className="fa fa-shopping-cart"></i> Mi carrito</Link>
-      <NavDropdown alignRight title="Dropdown" id="basic-nav-dropdown"  title={props.user.nombre}>
+       <NavDropdown alignRight title="Dropdown" id="basic-nav-dropdown"  title={props.user.nombre}>
         <Link to="/micuenta" className="nav-link">Mi cuenta</Link>
         <NavDropdown.Divider />
         <NavDropdown.Item onClick={props.handleLogout}> Cerrar sesión</NavDropdown.Item>
-      </NavDropdown>
-      </>
+      </NavDropdown> 
+      </> 
+      }
+      {(props.type === "admi" || props.administrador) &&
+      <>
+      <Link to="/mispublicaciones" className="nav-link"> Mis publicaciones</Link>
+     <NavDropdown alignRight title="Dropdown" id="basic-nav-dropdown"  title={props.administrador.nombre}>
+      <Link to="/micuenta" className="nav-link">Mi cuenta</Link>
+      <NavDropdown.Divider />
+      <NavDropdown.Item onClick={props.handleLogoutAdmi}> Cerrar sesión</NavDropdown.Item>
+    </NavDropdown> 
+    </> 
     }
-        
-      </Nav>
+
+    </Nav>  
   </Navbar.Collapse>
 </Navbar>
+
+
+
+
+
+
+
 <LoginModal show={ showLoginModal } 
             handleHide={ handleHideLoginModal } 
             handleLoginSucess={props.handleLoginSucess}
@@ -85,6 +105,8 @@ const [showLoginAdmiModal, setShowLoginAdmiModal] = useState(false);
 />
 
 </>
+
     )
 }
+
 export default NavigationBar;

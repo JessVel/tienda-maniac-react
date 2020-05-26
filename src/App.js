@@ -7,6 +7,7 @@ import ListaProductos from './components/ListaProductos';
 import DetalleProducto from './components/DetalleProducto';
 import About from './components/About';
 import ProductSearch from './components/ProductSearch';
+import NavBarMisPublicaciones from './components/NavBarMisPublicaciones';
 
 import {
   BrowserRouter as Router,
@@ -38,10 +39,24 @@ function App () {
           )
   }
 
-  const [administrador, setAdministrador] = useState(null);
+  const [admi, setAdmi] = useState(null);
 
   const onLoginAdmiSuccess = (loggedAdmi) =>{
-    setAdministrador(loggedAdmi);
+    setAdmi(loggedAdmi);
+  }
+
+  const onLogoutAdmi = () =>{
+    let url = "http://localhost:8888/auth";
+
+    fetch (url, {
+                  method: "DELETE",
+                  credentials: "include"
+                }
+    ).then( response => response.json()
+    ).then( data =>{
+                  setAdmi(null)
+                  }
+          )
   }
 
   
@@ -50,10 +65,12 @@ function App () {
 
 <Router>    
         <NavigationBar  user={usuario}
-                        administrador={administrador}
+                        administrador={admi}
                         handleLoginSucess={onLoginSuccess}
                         handleLogout={onLogout}
+                        handleLogoutAdmi={onLogoutAdmi}
                         handleLoginAdmiSucess={onLoginAdmiSuccess}
+                        
                         
 
 />
@@ -64,7 +81,7 @@ function App () {
                                     <>
                                     <Carouselheader />
                                     <LoMasVendido />
-                                    <ListaProductos />
+        
                                     <About />
                                     
                                    
@@ -79,11 +96,11 @@ function App () {
           { usuario &&
            <Route exact path="/micuenta" children={
                                              
-            <DetalleProducto  user={usuario}
-                              administrador={administrador}
-                              type="micuenta"
-            />
-                            }
+                                                <DetalleProducto  user={usuario}
+                                                                  administrador={admi}
+                                                                  type="micuenta"
+                                                />
+                                                                }
         />}
     
 
@@ -111,9 +128,12 @@ function App () {
           />
         }
          
+      
+        
+         
  
-}
-/>
+
+
 
          
         </Switch>

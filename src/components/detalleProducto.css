@@ -1,0 +1,25 @@
+.breadcrumb{
+    background-color:#FDFBFB !important;
+}
+
+.breadcrumb-item{
+    text-decoration: none !important;
+    color: #000;
+}
+
+.breadcrumb-item:hover{
+    color: #000;
+}
+.coso {
+   
+    overflow: hidden;
+  }
+
+.coso .img-thumbnail {
+    
+        transition: all 2s ease-in-out;
+  }
+  
+  .coso:hover .img-thumbnail {
+        transform: scale(2,2)
+  }
